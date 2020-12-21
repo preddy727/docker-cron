@@ -1,2 +1,3 @@
-* * * * * root echo "Hello world" >> /var/log/cron.log 2>&1
+0 17 * * 1-5 root kubectl -n default patch hpa azure-vote-front --patch '{"spec":{"minReplicas":5}}'
+0 22 * * 1-5 root kubectl -n default patch hpa azure-vote-front --patch '{"spec":{"minReplicas":1}}'
 # Don't remove the empty line at the end of this file. It is required to run the cron job
