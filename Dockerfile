@@ -5,7 +5,7 @@ RUN apt-get update -y
 RUN apt-get install curl wget sudo -y
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 RUN az aks install-cli
-RUN az login
+RUN az login --identity 
 RUN az aks get-credentials --resource-group preastus2-aksdemo-rg --name preastus2-aksdemo-aks
 #RUN kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
 
