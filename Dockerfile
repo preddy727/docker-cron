@@ -1,9 +1,13 @@
-FROM microsoft/azure-cli
+FROM ubuntu
 
 #Install AKS cli
+RUN apt-get update -y
+RUN apt-get install curl wget sudo -y
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 RUN az aks install-cli
+RUN az login
 RUN az aks get-credentials --resource-group preastus2-aksdemo-rg --name preastus2-aksdemo-aks
-#CMD kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
+#RUN kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
 
 
 # Add crontab file in the cron directory
@@ -19,8 +23,8 @@ RUN touch /var/log/cron.log
 RUN apt-get update
 RUN apt-get -y install cron
 
-
 # Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
-
+#CMD cron && tail -f /var/log/cron.log
+CMD echo "starting" && echo "continuing" && (cron) \
+ && echo "tailing..." && : >> /var/log/cron.log && tail -f /var/log/cron.log
 
