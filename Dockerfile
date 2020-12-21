@@ -3,7 +3,7 @@ FROM microsoft/azure-cli
 #Install AKS cli
 RUN az aks install-cli
 RUN az aks get-credentials --resource-group preastus2-aksdemo-rg --name preastus2-aksdemo-aks
-kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
+RUN kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
 
 
 # Add crontab file in the cron directory
