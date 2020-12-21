@@ -5,6 +5,8 @@ An example of running cron job to schedule scale out and scale rules on horizont
 Deploy a private aks cluster and sample front door voting application 
 https://github.com/preddy727/aksprivatecluster
 
+
+# Create docker image with azure cli, aks credentials and crontab for HPA patching 
 ```cli 
 
 git clone https://github.com/preddy727/docker-cron
