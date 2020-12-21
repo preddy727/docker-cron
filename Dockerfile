@@ -1,5 +1,10 @@
-FROM ubuntu:latest
-MAINTAINER docker@ekito.fr
+FROM microsoft/azure-cli
+
+#Install AKS cli
+RUN az aks install-cli
+RUN az aks get-credentials --resource-group preastus2-aksdemo-rg --name preastus2-aksdemo-aks
+kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
+
 
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/hello-cron
@@ -17,3 +22,5 @@ RUN apt-get -y install cron
 
 # Run the command on container startup
 CMD cron && tail -f /var/log/cron.log
+
+
